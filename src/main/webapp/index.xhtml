@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
+<f:loadBundle basename="messages" var="msg" />
+ 
+<h:head>
+    <title>JSF 2.0 Greeting</title>
+    
+</h:head>
+<h:body>
+    <h3><h:outputText value="#{msg.header}" /></h3>
+    <h:form >
+        <h:inputText styleClass="test" id="name" value="#{personBean.name}"></h:inputText>
+        <h:commandButton value="greeting" action="index"></h:commandButton> <br />
+       <h:dataTable value="#{personBean.names}" var="o"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    		>
+
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">Order No</f:facet>
+    				<!-- row record -->
+    				#{o.name}
+    			</h:column>
+ 
+    		</h:dataTable>
+
+        <h:commandButton value="clean" action="#{personBean.clean}" ></h:commandButton> <br />
+        <ui:repeat value="#{personBean.names}" var="value">
+    #{value.name} <br />
+</ui:repeat>
+    </h:form>
+</h:body>
+</html>
